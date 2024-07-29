@@ -1,3 +1,18 @@
+"""
+Austin Kingsland
+
+This script implements an enhanced Convolutional Neural Network (CNN) model 
+to classify images in the CIFAR-10 dataset. The model architecture includes 
+several convolutional layers with batch normalization and dropout for better 
+generalization and to prevent overfitting. The input images are augmented 
+using techniques such as random cropping, horizontal flipping, rotation, and 
+color jittering to increase the diversity of the training data. The model is 
+trained using the Adam optimizer with a cosine annealing learning rate 
+scheduler to adjust the learning rate over epochs. The training and testing 
+functions handle the forward and backward propagation and evaluate the model 
+performance. Finally, the trained model is saved for future use.
+"""
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -10,25 +25,29 @@ import torch.optim.lr_scheduler as lr_scheduler
 class EnhancedNet(nn.Module):
     def __init__(self):
         super(EnhancedNet, self).__init__()
+        # First convolutional block
         self.conv1 = nn.Conv2d(3, 32, kernel_size=3, padding=1)
         self.bn1 = nn.BatchNorm2d(32)
         self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
         self.bn2 = nn.BatchNorm2d(64)
         self.pool1 = nn.MaxPool2d(kernel_size=2, stride=2)
         self.dropout1 = nn.Dropout(0.25)
-
+        
+        # Second convolutional block
         self.conv3 = nn.Conv2d(64, 128, kernel_size=3, padding=1)
         self.bn3 = nn.BatchNorm2d(128)
         self.conv4 = nn.Conv2d(128, 256, kernel_size=3, padding=1)
         self.bn4 = nn.BatchNorm2d(256)
         self.pool2 = nn.MaxPool2d(kernel_size=2, stride=2)
         self.dropout2 = nn.Dropout(0.25)
-
+        
+        # Third convolutional block
         self.conv5 = nn.Conv2d(256, 256, kernel_size=3, padding=1)
         self.bn5 = nn.BatchNorm2d(256)
         self.pool3 = nn.MaxPool2d(kernel_size=2, stride=2)
         self.dropout3 = nn.Dropout(0.25)
-
+        
+        # Fully connected layers
         self.fc1 = nn.Linear(256 * 4 * 4, 512)
         self.dropout4 = nn.Dropout(0.5)
         self.fc2 = nn.Linear(512, 10)
@@ -117,4 +136,3 @@ for epoch in range(1, 51):
 
 # Save the model
 torch.save(model.state_dict(), "enhancednet_cifar10.pth")
-
