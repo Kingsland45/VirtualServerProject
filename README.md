@@ -9,6 +9,6 @@ Research and all work done by Austin Kingsland for my employment Portfolio.
 
 If you would like to see my other work, such as AI training models using Python or my Infectous Disease Simulator, please email me: austinkingsland04@gmail.com
 
-There are two files in this repository unrelated to the project, these are the two python scripts. These are here for the curious employer who may want to see some higher level mathematics or a more challenging coding project / file. Again, they are unrelated to my back end server project and will be removed at a later date.
+There are files in this repository unrelated to the project, these are the two python scripts and the C++ file. These are here for the curious employer who may want to see some higher level mathematics or a more challenging coding project / file. Again, they are unrelated to my back end server project and will be removed at a later date.
 
 Technology used: VirtualBox, Linux Server, Openstack, Apache, MariaDB, SSH, Nano, RSA encryption.
